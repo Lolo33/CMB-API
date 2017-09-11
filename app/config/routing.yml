@@ -1,0 +1,16 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+apiuser:
+    type:     rest
+    resource: AppBundle\Controller\UtilisateurApiController
+
+auth-tokens:
+    type:     rest
+    resource: AppBundle\Controller\UtilisateurTokenController
+
+lieux:
+    type:     rest
+    resource: AppBundle\Controller\UtilisateurTokenController
+

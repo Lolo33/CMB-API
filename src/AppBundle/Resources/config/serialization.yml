@@ -1,0 +1,146 @@
+AppBundle\Entity\UtilisateurApi:
+    attributes:
+        id:
+            groups: ['userApi', 'auth-token']
+        userClientId:
+            groups: ['userApi', 'auth-token']
+        nomSociete:
+            groups: ['userApi', 'auth-token']
+        coordonnee:
+            groups: ['userApi', 'auth-token']
+        listeReservations:
+            groups: ['userApi', 'auth-token']
+
+AppBundle\Entity\UtilisateurToken:
+    attributes:
+        id:
+            groups: ['auth-token']
+        value:
+            groups: ['auth-token']
+        createdAt:
+            groups: ['auth-token']
+        apiUser:
+            groups: ['auth-token']
+
+AppBundle\Entity\Complexe:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        nom:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        coordonnees:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        listeTerrains:
+            groups: ['complexe']
+
+AppBundle\Entity\Coordonnee:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+        adresseLigne1:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+        adresseLigne2:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+        ville:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+        codePostal:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+        mail:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+        telephone:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'userApi', 'reservations']
+
+AppBundle\Entity\Terrain:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        nom:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        type:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        complexe:
+            groups: ['terrains', 'comission', 'comission', 'horaires', 'reservations']
+        listeHoraires:
+            groups: ['complexe', 'terrains']
+        listeTarifs:
+            groups: ['complexe', 'terrains']
+        listeComissions:
+            groups: ['complexe', 'terrains']
+
+AppBundle\Entity\TerrainType:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+        typeNom:
+            groups: ['complexe', 'terrains', 'comission', 'horaires', 'reservations']
+
+AppBundle\Entity\PlageHoraire:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        terrain:
+            groups: ['horaires', 'reservations']
+        heureDebut:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        heureFin:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        statut:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        reservation:
+            groups: ['complexe', 'terrains', 'horaires']
+
+AppBundle\Entity\PlageHoraireStatut:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        statutNom:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+
+AppBundle\Entity\PlanningTarif:
+    attributes:
+        id:
+            groups: ['complexe', 'tarif', 'terrains']
+        terrain:
+            groups: ['tarif']
+        montant:
+            groups: ['complexe', 'terrains', 'tarif']
+        jourDeLaSemaine:
+            groups: ['complexe', 'tarif', 'terrains']
+        heureDebut:
+            groups: ['complexe', 'tarif', 'terrains']
+        heureFin:
+            groups: ['complexe', 'tarif', 'terrains']
+
+AppBundle\Entity\PlanningComission:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'comission']
+        terrain:
+            groups: ['comission']
+        utilisateurApi:
+            groups: []
+        montant:
+            groups: ['complexe', 'terrains', 'comission']
+        jourDeLaSemaine:
+            groups: ['complexe', 'terrains', 'comission']
+        heureDebut:
+            groups: ['complexe', 'terrains', 'comission']
+        heureFin:
+            groups: ['complexe', 'terrains', 'comission']
+
+AppBundle\Entity\Reservation:
+    attributes:
+        id:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        reference:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        nomClient:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        telephoneClient:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        descriptif:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        estConfirmee:
+            groups: ['complexe', 'terrains', 'horaires', 'reservations']
+        plageHoraire:
+            groups: ['reservations']

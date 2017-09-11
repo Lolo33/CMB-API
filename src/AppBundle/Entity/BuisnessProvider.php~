@@ -1,0 +1,278 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BuisnessProvider
+ *
+ * @ORM\Table(name="buisness_provider")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BuisnessProviderRepository")
+ */
+class BuisnessProvider
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_valid", type="boolean", nullable=true)
+     */
+    private $isValid;
+
+    /**
+     * @var BuisnessStatus
+     *
+     * @ORM\ManyToOne(targetEntity="BuisnessStatus")
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var Adress
+     *
+     * @ORM\ManyToOne(targetEntity="Adress")
+     */
+    private $adress;
+
+    /**
+     * @var DeliveryMode[]
+     *
+     * @ORM\ManyToMany(targetEntity="DeliveryMode")
+     */
+    private $listDeliveryMode;
+
+    /**
+     * @var ProofDocument[]
+     *
+     * @ORM\ManyToMany(targetEntity="ProofDocument")
+     */
+    private $listProofDocuments;
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->listProofDocuments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set isValid
+     *
+     * @param boolean $isValid
+     *
+     * @return BuisnessProvider
+     */
+    public function setIsValid($isValid)
+    {
+        $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    /**
+     * Get isValid
+     *
+     * @return bool
+     */
+    public function getIsValid()
+    {
+        return $this->isValid;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \AppBundle\Entity\BuisnessStatus $status
+     *
+     * @return BuisnessProvider
+     */
+    public function setStatus(\AppBundle\Entity\BuisnessStatus $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \AppBundle\Entity\BuisnessStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return BuisnessProvider
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add listProofDocument
+     *
+     * @param \AppBundle\Entity\ProofDocument $listProofDocument
+     *
+     * @return BuisnessProvider
+     */
+    public function addListProofDocument(\AppBundle\Entity\ProofDocument $listProofDocument)
+    {
+        $this->listProofDocuments[] = $listProofDocument;
+
+        return $this;
+    }
+
+    /**
+     * Remove listProofDocument
+     *
+     * @param \AppBundle\Entity\ProofDocument $listProofDocument
+     */
+    public function removeListProofDocument(\AppBundle\Entity\ProofDocument $listProofDocument)
+    {
+        $this->listProofDocuments->removeElement($listProofDocument);
+    }
+
+    /**
+     * Get listProofDocuments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getListProofDocuments()
+    {
+        return $this->listProofDocuments;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return BuisnessProvider
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return BuisnessProvider
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set adress
+     *
+     * @param \AppBundle\Entity\Adress $adress
+     *
+     * @return BuisnessProvider
+     */
+    public function setAdress(\AppBundle\Entity\Adress $adress = null)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return \AppBundle\Entity\Adress
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+}

@@ -1,0 +1,149 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Terrain
+ *
+ * @ORM\Table(name="terrain")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TerrainRepository")
+ */
+class Terrain
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="terrain_nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var TerrainType
+     *
+     * @ORM\ManyToOne(targetEntity="TerrainType")
+     */
+    private $type;
+
+    /**
+     * @var Lieu
+     *
+     * @ORM\ManyToOne(targetEntity="Lieu", inversedBy="listeTerrains")
+     */
+    private $lieu;
+
+    /**
+     * @var Lieu
+     *
+     * @ORM\OneToMany(targetEntity="PlageHoraire", mappedBy="terrain")
+     */
+    private $listeHoraires;
+
+    /**
+     * @var Lieu
+     *
+     * @ORM\OneToMany(targetEntity="PlanningTarif", mappedBy="terrain")
+     */
+    private $listeTarifs;
+
+    /**
+     * @var Lieu
+     *
+     * @ORM\OneToMany(targetEntity="PlanningComission", mappedBy="terrain")
+     */
+    private $listeComissions;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Terrain
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\TerrainType $type
+     *
+     * @return Terrain
+     */
+    public function setType(\AppBundle\Entity\TerrainType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\TerrainType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set lieu
+     *
+     * @param \AppBundle\Entity\Lieu $lieu
+     *
+     * @return Terrain
+     */
+    public function setLieu(\AppBundle\Entity\Lieu $lieu = null)
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * Get lieu
+     *
+     * @return \AppBundle\Entity\Lieu
+     */
+    public function getLieu()
+    {
+        return $this->lieu;
+    }
+}

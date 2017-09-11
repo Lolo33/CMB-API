@@ -1,0 +1,63 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Lieu
+ *
+ * @ORM\Table(name="lieu")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LieuxRepository")
+ */
+class Lieu
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var Coordonnee
+     *
+     * @ORM\Column(name="lieu_nom", type="string")
+     */
+    private $nom;
+
+    /**
+     * @var Coordonnee
+     *
+     * @ORM\OneToOne(targetEntity="Coordonnee")
+     */
+    private $coordonnees;
+
+    /**
+     * @var Terrain[]
+     *
+     * @ORM\OneToMany(targetEntity="Terrain", mappedBy="lieu")
+     */
+    private $listeTerrains;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->lieuListeTerrains = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+}
