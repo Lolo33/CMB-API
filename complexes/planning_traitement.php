@@ -22,6 +22,9 @@
 			$datetime_debut = DateTime::createFromFormat('Y-m-j H:i:s', $jour.' '.$heure_debut);
 		}
 		$datetime_fin = DateTime::createFromFormat('Y-m-j H:i:s',  $jour.' '.$heure_fin);
+		if ($heure_fin == "00:00:00"){
+			$datetime_fin->add( new DateInterval('P1D') );
+		}
 
 
 		// boucle si dupliquer

@@ -658,15 +658,13 @@ function liste_creneaux($terrain_id, $jour, $duree){
 	$heure_boucle_fin = date_create_from_format('Y-m-j H:i:s', $jour.'00:00:00');
 	$heure_boucle_fin->add(new DateInterval('P1D'));
 	
-	$req1 = $db->prepare('SELECT * FROM plage_horaire WHERE terrain_id = :terrain_id AND statut_id = 1 AND hor_heure_debut > :jour1 AND hor_heure_fin < :jour2 ORDER BY hor_heure_debut ASC');
+	$req1 = $db->prepare('SELECT * FROM plage_horaire WHERE terrain_id = :terrain_id AND statut_id = 1 ORDER BY hor_heure_debut ASC');
 	$req1->execute(array(
-		':terrain_id' => $terrain_id,
-		':jour1' => $heure_boucle->format('Y-m-j H:i:s'),
-		':jour2' => $heure_boucle_fin->format('Y-m-j H:i:s')
+		':terrain_id' => $terrain_id
 	));
 	
 	$liste_plages = $req1->fetchAll();
-	while ($heure_boucle < $heure_boucle_fin) {
+	while ($heure_boucle <= $heure_boucle_fin) {
 		
 		$heure_boucle_duree = clone($heure_boucle);
 		$heure_boucle_duree->add(new DateInterval('PT'.$duree.'M'));

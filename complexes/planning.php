@@ -504,15 +504,18 @@ function case_complexe ($date_heure, $liste_terrains){
 					$resa = recupResaById($plage_value['reservation_id'])[0];
 					?>	
 						<td class="creneau_resa" rowspan="<?php echo $nb_demi_heure; ?>" style="height: <?php echo $hauteur; ?>;" data-toggle="modal" data-target="#modal_creneau_reserve_<?php echo $plage_value['reservation_id']; ?>">
-							<p style="height: <?php echo $hauteur; ?>;" class="heure">                      
-								<?php 
-									$ex = explode(" ", $date_heure); 
-									$ex2 = explode(":", $ex[1]);
-									echo $ex2[0].':'.$ex2[1];
-								?>
-								<input type="hidden" class="creneau_id" value="<?php echo $plage_value['id']; ?>">
-								<input type="hidden" class="creneau_id" value="<?php echo $plage_value['reservation_id']; ?>">
-							</p>
+							<div style="margin: 0px; height: <?php echo $hauteur; ?>;">
+								<p class="heure">                      
+									<?php 
+										$ex = explode(" ", $date_heure); 
+										$ex2 = explode(":", $ex[1]);
+										echo $ex2[0].':'.$ex2[1];
+									?>
+									<input type="hidden" class="creneau_id" value="<?php echo $plage_value['id']; ?>">
+									<input type="hidden" class="creneau_id" value="<?php echo $plage_value['reservation_id']; ?>">
+								</p>
+								<p style="margin: 0px; vertical-align: center; padding-top: 5px;" class="heure"><?php echo $resa['res_nom_client']; ?></p>
+							</div>
 						</td>
 							
 						<div class="modal fade" id="modal_creneau_reserve_<?php echo $plage_value['reservation_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
